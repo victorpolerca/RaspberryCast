@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>RaspberryCast by vincelwt</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">RaspberryCast</h1>
+      <h2 class="project-tagline">Transform your Raspberry Pi into a streaming device</h2>
+      <a href="https://github.com/vincelwt/RaspberryCast" class="btn">View on GitHub</a>
+      <a href="https://github.com/vincelwt/RaspberryCast/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/vincelwt/RaspberryCast/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="raspberrycast-30" class="anchor" href="#raspberrycast-30" aria-hidden="true"><span class="octicon octicon-link"></span></a>RaspberryCast 3.0</h1>
+
+<blockquote>
+<p>Transform your Raspberry Pi into a streaming device.
+Cast videos from mobile devices or computers to your TV.</p>
+</blockquote>
+
+<p><a href="https://play.google.com/store/apps/details?id=com.kiwiidev.raspberrycast"><img src="https://developer.android.com/images/brand/en_app_rgb_wo_60.png" alt="Android app on Google Play"></a>
+<a href="https://chrome.google.com/webstore/detail/raspberrycast/aikmhmnmlebhcjjdbjilohbpfljioeak"><img src="https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png" alt="Extension for Chrome"></a>
+<a href="https://addons.mozilla.org/firefox/addon/raspberrycast/"><img src="https://raw.githubusercontent.com/vincelwt/RaspberryCast/master/images/firefox.png" alt="Extension for Firefox"></a></p>
+
+<p>Demo video with the Chrome extension:</p>
+
+<p><a href="http://www.youtube.com/watch?v=0wEcYPSm_f8"><img src="http://img.youtube.com/vi/0wEcYPSm_f8/0.jpg" alt="Video 1"></a></p>
+
+<p>Demo video with an Android (also works on iOS):</p>
+
+<p><a href="http://www.youtube.com/watch?v=ZafqI4ZtJkI"><img src="http://img.youtube.com/vi/ZafqI4ZtJkI/0.jpg" alt="Video 2"></a></p>
+
+<h2>
+<a id="supported-services" class="anchor" href="#supported-services" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported services</h2>
+
+<p>Works with all youtube-dl supported websites: <a href="http://rg3.github.io/youtube-dl/supportedsites.html">http://rg3.github.io/youtube-dl/supportedsites.html</a> (YouTube, SoundCloud, Dailymotion, Vimeo, etc...) and also any direct link to mp3, mp4, avi and mkv file.</p>
+
+<p>You can also cast playlists from Youtube or Soundcloud.</p>
+
+<h2>
+<a id="how-to-install-raspberrypi-side" class="anchor" href="#how-to-install-raspberrypi-side" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to install (RaspberryPi side)</h2>
+
+<pre><code>wget https://raw.githubusercontent.com/vincelwt/RaspberryCast/master/setup.sh &amp;&amp; sudo sh setup.sh
+</code></pre>
+
+<p>That's it.</p>
+
+<p>The installation script will:</p>
+
+<ul>
+<li>Download RaspberryCast and install the necessary dependencies</li>
+<li>Autostart RaspberryCast at boot (added to /etc/rc.local)</li>
+<li>Reboot</li>
+</ul>
+
+<p>You can review the <a href="https://github.com/vincelwt/RaspberryCast/blob/master/setup.sh">install script</a>.</p>
+
+<h1>
+<a id="remote-control-mobile-devices" class="anchor" href="#remote-control-mobile-devices" aria-hidden="true"><span class="octicon octicon-link"></span></a>Remote control (mobile devices)</h1>
+
+<p><img src="https://raw.githubusercontent.com/vincelwt/RaspberryCast/master/images/android.png" alt="alt tag"></p>
+
+<p>On any device connected to the same network as you Pi, you can visit the page:</p>
+
+<pre><code>http://raspberrypi.local:2020/remote
+</code></pre>
+
+<p>Note that you can "Add to homescreen" this link</p>
+
+<p>You can also use the Android application (link to Playstore at the top of the page)</p>
+
+<h2>
+<a id="chrome--firefox-extension" class="anchor" href="#chrome--firefox-extension" aria-hidden="true"><span class="octicon octicon-link"></span></a>Chrome &amp; Firefox extension</h2>
+
+<p><img src="https://raw.githubusercontent.com/vincelwt/RaspberryCast/master/images/extension.png" alt="alt tag"></p>
+
+<p><img src="https://raw.githubusercontent.com/vincelwt/RaspberryCast/master/images/rightclick.png" alt="alt tag"></p>
+
+<p>You can configure RaspberryCast settings in the extension option page.</p>
+
+<h2>
+<a id="drag-and-drop-videos-from-computer" class="anchor" href="#drag-and-drop-videos-from-computer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Drag and drop videos from computer</h2>
+
+<p><img src="https://raw.githubusercontent.com/vincelwt/RaspberryCast/master/images/draganddrop.png" alt="alt tag"></p>
+
+<p><strong>Python &amp; GTK3 needed - tested on Ubuntu &amp; OSX</strong></p>
+
+<p>To download the drag and drop client:</p>
+
+<pre><code>wget https://raw.githubusercontent.com/vincelwt/RaspberryCast/master/DragDrop.py
+</code></pre>
+
+<p>Start it with</p>
+
+<pre><code>./DragDrop.py
+</code></pre>
+
+<p>If subtitles corresponding to the video you are casting are found, they will be automatically loaded.</p>
+
+<h2>
+<a id="uninstall" class="anchor" href="#uninstall" aria-hidden="true"><span class="octicon octicon-link"></span></a>Uninstall</h2>
+
+<p>Remove reference to RaspberryPi.sh in /etc/rc.local</p>
+
+<p>Delete the /home/pi/RaspberryCast/ folder.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Code released under the MIT license. </p>
+
+<p>You are welcome to contribute to the project.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/vincelwt/RaspberryCast">RaspberryCast</a> is maintained by <a href="https://github.com/vincelwt">vincelwt</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
