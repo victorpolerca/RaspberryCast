@@ -49,7 +49,7 @@ echo "Cloning project from GitHub.."
 echo ""
 echo "============================================================"
 
-su - volumio -c "git clone https://github.com/vincelwt/RaspberryCast.git"
+su - volumio -c "git clone https://github.com/victorpolerca/RaspberryCast.git"
 chmod +x ./RaspberryCast/RaspberryCast.sh
 
 echo ""
