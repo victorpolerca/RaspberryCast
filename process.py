@@ -19,7 +19,7 @@ def launchvideo(url, sub=False):
 	thread = threading.Thread(target=playWithOMX, args=(out, sub,))
 	thread.start()
 	
-	os.system("echo . > /tmp/cmd &") #Start signal for OMXplayer
+	os.system("echo . > /tmp/cmd &") #Start signal for mpd
 
 def queuevideo(url, onlyqueue=False):
 	logger.info('Extracting source video URL, before adding to queue...')	
@@ -32,7 +32,7 @@ def queuevideo(url, onlyqueue=False):
 		logger.info('No video currently playing, playing video instead of adding to queue.')
 		thread = threading.Thread(target=playWithOMX, args=(out, False,))
 		thread.start()
-		os.system("echo . > /tmp/cmd &") #Start signal for OMXplayer
+		os.system("echo . > /tmp/cmd &") #Start signal for mpd
 	else:
 		if out is not None:
 			with open('video.queue', 'a') as f:
@@ -105,15 +105,15 @@ def playlistToQueue(url):
 				queuevideo(i['url'])
 
 def playWithOMX(url, sub):
-	logger.info("Starting OMXPlayer now.")
+	logger.info("Starting mpd now.")
 
 	setState("1")
 	if sub:
-		os.system("omxplayer -b -r -o both '" + url + "' --subtitles subtitle.srt < /tmp/cmd")
+		os.system("mpd -b -r -o both '" + url + "' --subtitles subtitle.srt < /tmp/cmd")
 	elif url is None:
 		pass
 	else :
-		os.system("omxplayer -b -r -o both '" + url + "' < /tmp/cmd")
+		os.system("mpd -b -r -o both '" + url + "' < /tmp/cmd")
 	
 	if getState() != "2": # In case we are again in the launchvideo function
 		setState("0")
@@ -127,7 +127,7 @@ def playWithOMX(url, sub):
 					fout.writelines(data[1:])
 				thread = threading.Thread(target=playWithOMX, args=(first_line, False,))
 				thread.start()
-				os.system("echo . > /tmp/cmd &") #Start signal for OMXplayer
+				os.system("echo . > /tmp/cmd &") #Start signal for mpd
 			else:
 				logger.info("Playlist empty, skipping.")
 				if config["new_log"]:
