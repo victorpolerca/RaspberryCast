@@ -25,7 +25,7 @@ echo "Installing necessary dependencies... (This could take a while)"
 echo ""
 echo "============================================================"
 
-apt-get install -y lsof python-pip git wget mpd libnss-mdns fbi
+apt-get install -y lsof python-pip git wget omxplayer libnss-mdns fbi
 echo "============================================================"
 
 if [ "$?" = "1" ]
