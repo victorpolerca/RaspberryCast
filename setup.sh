@@ -49,7 +49,7 @@ echo "Cloning project from GitHub.."
 echo ""
 echo "============================================================"
 
-su - pi -c "git clone https://github.com/vincelwt/RaspberryCast.git"
+su - volumio -c "git clone https://github.com/vincelwt/RaspberryCast.git"
 chmod +x ./RaspberryCast/RaspberryCast.sh
 
 echo ""
@@ -64,14 +64,14 @@ chmod 666 /dev/tty1
 
 #Add to rc.local startup
 sed -i '$ d' /etc/rc.local
-echo "su - pi -c \"cd ./RaspberryCast/ && ./RaspberryCast.sh start\"" >> /etc/rc.local
+echo "su - volumio -c \"cd ./RaspberryCast/ && ./RaspberryCast.sh start\"" >> /etc/rc.local
 echo "exit 0" >> /etc/rc.local
 
 #Adding right to current pi user to shutdown
 chmod +s /sbin/shutdown
 
 #Adding right to sudo fbi without password
-echo "pi ALL = (root) NOPASSWD: /usr/bin/fbi" >> /etc/sudoers
+echo "volumio ALL = (root) NOPASSWD: /usr/bin/fbi" >> /etc/sudoers
 
 rm setup.sh
 
