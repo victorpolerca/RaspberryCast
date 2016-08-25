@@ -1,28 +1,28 @@
 import youtube_dl, os, threading, logging, json
-with open('raspberrycast.conf') as f:    
+with open('raspberrycast.conf') as f:
     config = json.load(f)
 logger = logging.getLogger("RaspberryCast")
 
 def launchvideo(url, sub=False):
 	setState("2")
-	
+
 	os.system("echo -n q > /tmp/cmd &") #Kill previous instance of OMX
 
 	if config["new_log"]:
 		os.system("sudo fbi -T 1 -a --noverbose images/processing.jpg")
 
-	logger.info('Extracting source video URL...')	
+	logger.info('Extracting source video URL...')
 	out = return_full_url(url, sub)
 
 	logger.debug("Full video URL fetched.")
-	
+
 	thread = threading.Thread(target=playWithOMX, args=(out, sub,))
 	thread.start()
-	
-	os.system("echo . > /tmp/cmd &") #Start signal for OMXplayer
+
+	os.system("echo . > /tmp/cmd &") #Start signal for
 
 def queuevideo(url, onlyqueue=False):
-	logger.info('Extracting source video URL, before adding to queue...')	
+	logger.info('Extracting source video URL, before adding to queue...')
 
 	out = return_full_url(url, False)
 
@@ -32,7 +32,7 @@ def queuevideo(url, onlyqueue=False):
 		logger.info('No video currently playing, playing video instead of adding to queue.')
 		thread = threading.Thread(target=playWithOMX, args=(out, False,))
 		thread.start()
-		os.system("echo . > /tmp/cmd &") #Start signal for OMXplayer
+		os.system("echo . > /tmp/cmd &") #Start signal for
 	else:
 		if out is not None:
 			with open('video.queue', 'a') as f:
@@ -41,7 +41,7 @@ def queuevideo(url, onlyqueue=False):
 def return_full_url(url, sub=False):
 	logger.debug("Parsing source url for "+url+" with subs :"+str(sub))
 
-	if (url[-4:] in (".avi", ".mkv", ".mp4", ".mp3")) or (sub) or (".googlevideo.com/" in url):	
+	if (url[-4:] in (".avi", ".mkv", ".mp4", ".mp3")) or (sub) or (".googlevideo.com/" in url):
 		logger.debug('Direct video URL, no need to use youtube-dl.')
 		return url
 
@@ -93,10 +93,10 @@ def playlist(url, cast_now):
 
 	thread = threading.Thread(target=playlistToQueue, args=(url,))
 	thread.start()
-	
+
 def playlistToQueue(url):
 	logger.info("Adding every videos from playlist to queue.")
-	ydl = youtube_dl.YoutubeDL({'logger': logger, 'extract_flat': 'in_playlist',  'ignoreerrors': True}) 
+	ydl = youtube_dl.YoutubeDL({'logger': logger, 'extract_flat': 'in_playlist',  'ignoreerrors': True})
 	with ydl: #Downloading youtub-dl infos
 		result = ydl.extract_info(url, download=False)
 		for i in result['entries']:
@@ -105,16 +105,16 @@ def playlistToQueue(url):
 				queuevideo(i['url'])
 
 def playWithOMX(url, sub):
-	logger.info("Starting OMXPlayer now.")
+	logger.info("Starting  now.")
 
 	setState("1")
 	if sub:
-		os.system("omxplayer -b -r -o both '" + url + "' --subtitles subtitle.srt < /tmp/cmd")
+		os.system(" -b -r -o both '" + url + "' --subtitles subtitle.srt < /tmp/cmd")
 	elif url is None:
 		pass
 	else :
-		os.system("omxplayer -b -r -o both '" + url + "' < /tmp/cmd")
-	
+		os.system(" -b -r -o both '" + url + "' < /tmp/cmd")
+
 	if getState() != "2": # In case we are again in the launchvideo function
 		setState("0")
 		with open('video.queue', 'r') as f: #Check if there is videos in queue
@@ -127,7 +127,7 @@ def playWithOMX(url, sub):
 					fout.writelines(data[1:])
 				thread = threading.Thread(target=playWithOMX, args=(first_line, False,))
 				thread.start()
-				os.system("echo . > /tmp/cmd &") #Start signal for OMXplayer
+				os.system("echo . > /tmp/cmd &") #Start signal for
 			else:
 				logger.info("Playlist empty, skipping.")
 				if config["new_log"]:
