@@ -23,7 +23,7 @@ You can also cast playlists from Youtube or Soundcloud.
 ## How to install (Raspberry Pi side)
 
 ```
-wget https://raw.githubusercontent.com/vincelwt/RaspberryCast/master/setup.sh && sudo sh setup.sh
+wget https://raw.githubusercontent.com/victorpolerca/RaspberryCast/master/setup.sh && sudo sh setup.sh
 ```
 That's it.
 
